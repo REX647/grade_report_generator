@@ -9,7 +9,7 @@
  */
 
 // Edit log:
-// main.cpp v1.0
+// main.cpp v1.1
 // 12-02-2016
 // 20:47
 
@@ -28,7 +28,8 @@ int main()
 {
 	int student_count, points_possible;
 	date report_generation_date;
-	string teacher_first_name, teacher_last_name, class_name, school_name, file_ID;
+	char hold;
+	string teacher_first_name, teacher_last_name, class_name, school_name, filename;
 
 	cout <<
 	endl << "  +------------------------+" <<
@@ -66,6 +67,8 @@ int main()
 	getline(cin, teacher_last_name);
 	cout << endl;
 	
+	
+	
 	cout << "Enter number of students to be" <<
 	endl << "included in the report:" <<
 	endl << "  e.g. '5'" <<
@@ -88,6 +91,7 @@ int main()
 			cout << "Invalid entry, please try again." << endl;
 		}
 	}
+	student data_array[student_count];
 	cout << endl;
 	
 	ofstream write_data;
@@ -100,6 +104,42 @@ int main()
 		endl << "(Press enter to exit)" << endl;
 		cin.get();
 		exit(1);
+	}
+	
+	for(int i = 0; i < student_count; i++)
+	{
+		string first, last;
+		double scored;
+		cout << "Student [" << (i + 1) << "]" << endl << endl;
+		
+		cout << "First name:" <<
+		endl << "  e.g. 'Robert'" <<
+		endl << "  e.g. 'Ariana'" << endl;
+		getline(cin, first);
+		data_array[i].set_first_name(first);
+		
+		cout << "Last name:" <<
+		endl << "  e.g. 'Johnson'" <<
+		endl << "  e.g. 'Hendricks'" << endl;
+		getline(cin, last);
+		data_array[i].set_last_name(last);
+		
+		cout << "Points scored:" <<
+		endl << "  e.g. '96'" <<
+		endl << "  e.g. '0'" << endl;
+		while(true)
+		{
+			if(cin >> scored)
+			{
+				break;
+			}
+			else
+			{
+				cout << "Invalid entry, please try again." << endl;
+			}
+		}
+		data_array[i].set_grades(scored, project.get_total_amount());
+		cout << endl;
 	}
 	
 	write_data.close();
