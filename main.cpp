@@ -9,9 +9,9 @@
  */
 
 // Edit log:
-// main.cpp v1.1
+// main.cpp v1.2
 // 12-02-2016
-// 20:47
+// 23=-44:47
 
 #include <iostream>
 #include <fstream>
