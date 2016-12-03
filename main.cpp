@@ -9,9 +9,9 @@
  */
 
 // Edit log:
-// main.cpp v1.2
-// 12-02-2016
-// 23=-44:47
+// main.cpp v1.3
+// 12-03-2016
+// 10:36
 
 #include <iostream>
 #include <fstream>
@@ -67,7 +67,21 @@ int main()
 	getline(cin, teacher_last_name);
 	cout << endl;
 	
+	cout << "Enter date of assignment:" <<
+	endl << "  e.g. '12/01/2009'" <<
+	endl << "  e.g. '6-17-2013'" << endl;
+	int m1, d1, y1;
+	cin >> m1 >> hold >> d1 >> hold >> y1;
+	project -> assignment_date.set_date(m1, d1, y1);
+	cout << endl;
 	
+	cout << "Enter today's date:" <<
+	endl << "  e.g. '10/21/2010'" <<
+	endl << "  e.g. '8-8-2015'" << endl;
+	int m2, d2, y2;
+	cin >> m2 >> hold >> d2 >> hold >> y2;
+	report_generation_date.set_date(m2, d2, y2);
+	cout << endl;
 	
 	cout << "Enter number of students to be" <<
 	endl << "included in the report:" <<
@@ -93,18 +107,6 @@ int main()
 	}
 	student data_array[student_count];
 	cout << endl;
-	
-	ofstream write_data;
-	write_data.open(filename.c_str());
-	
-	if(write_data.fail())
-	{
-		cout << "An error occurred while writing to the text file." <<
-		endl << "The program has been terminated to prevent further errors." <<
-		endl << "(Press enter to exit)" << endl;
-		cin.get();
-		exit(1);
-	}
 	
 	for(int i = 0; i < student_count; i++)
 	{
@@ -138,9 +140,23 @@ int main()
 				cout << "Invalid entry, please try again." << endl;
 			}
 		}
-		data_array[i].set_grades(scored, project.get_total_amount());
+		data_array[i].set_result(scored, project.get_total_amount());
 		cout << endl;
 	}
+	
+	ofstream write_data;
+	write_data.open(filename.c_str());
+	
+	if(write_data.fail())
+	{
+		cout << "An error occurred while writing to the text file." <<
+		endl << "The program has been terminated to prevent further errors." <<
+		endl << "(Press enter to exit)" << endl;
+		cin.get();
+		exit(1);
+	}
+	
+	cout << "Writing data to text file..." << endl << endl;
 	
 	write_data.close();
 	
